@@ -44,7 +44,8 @@ The core data structure deals with image representation. A pixel is a struct as 
 
 ```C
 typedef struct {
-  unsigned short red; /* R value */ unsigned short green; /* G value */
+  unsigned short red; /* R value */
+  unsigned short green; /* G value */
   unsigned short blue; /* B value */
 } pixel;
 ```
@@ -72,3 +73,41 @@ void naive_rotate(int dim, pixel *src, pixel *dst) {
 
 The above code scans the rows of the source image matrix, copying to the columns of the destination image matrix. Your task is to rewrite this code to make it run as fast as possible using techniques like code motion, loop unrolling and blocking.
 See the file *kernels.c* for this code.
+
+### Smooth
+
+The smoothing function takes as input a source image src and returns the smoothed result in the destination image dst. Here is part of an implementation:
+
+```C
+void naive_smooth(int dim, pixel *src, pixel *dst) { int i, j;
+  for(i=0; i < dim; i++)
+    for(j=0; j < dim; j++)
+      dst[RIDX(i,j,dim)] = avg(dim, i, j, src); /* Smooth the (i,j)th pixel */
+  return;
+}
+```
+
+The function avg returns the average of all the pixels around the (i,j)th pixel. Your task is to optimize smooth (and avg) to run as fast as possible. (Note: The function avg is a local function and you can get rid of it altogether to implement smooth in some other way.)
+
+This code (and an implementation of avg) is in the file *kernels.c.*
+
+### Performance measures
+
+Our main performance measure is CPE or Cycles per Element. If a function takes C cycles to run for an image of size N × N, the CPE value is C/N2. Table 1 summarizes the performance of the naive implementations shown above and compares it against an optimized implementation. Performance is shown for for 5 different values of N. All measurements were made on the Pentium III Xeon Fish machines.
+
+The ratios (speedups) of the optimized implementation over the naive one will constitute a score of your implementation. To summarize the overall effect over different values of N, we will compute the geometric mean of the results for these 5 values. That is, if the measured speedups for N = {32, 64, 128, 256, 512} are R32 , R64 , R128 , R256 , and R512 then we compute the overall performance as seen in the following formula:
+
+![Performance Formula](https://github.com/csuchico-csci551/Performance-Lab/raw/master/images/formula2.png "Formula for Performance Scoring")
+
+| Test case        | 1 | 2 | 3 | 4 | 5 |  |
+| ------------- |----|----|----|----|----|----|
+| Method N     | 64 |128| 256| 512 |1024| Geom. Mean|
+|Naive rotate (CPE)|14.7| 40.1| 46.4| 65.9| 94.5| |
+|Optimized rotate (CPE)|8.0| 8.6| 14.8| 22.1| 25.3| |
+|Speedup (naive/opt)|1.8| 4.7| 3.1| 3.0| 3.7|3.1|
+||||||||
+|Method N|32 |64| 128| 256| 512|Geom. Mean|
+|Naive smooth (CPE)|695| 698| 702| 717| 722| |
+|Optimized smooth (CPE)|41.5 |41.6 |41.2 |53.5 |56.4| |
+|Speedup (naive/opt)|16.8 |16.8| 17.0| 13.4| 12.8|15.2|
+Table 1: CPEs and Ratios for Optimized vs. Naive Implementations
