@@ -110,4 +110,5 @@ The ratios (speedups) of the optimized implementation over the naive one will co
 |Naive smooth (CPE)|695| 698| 702| 717| 722| |
 |Optimized smooth (CPE)|41.5 |41.6 |41.2 |53.5 |56.4| |
 |Speedup (naive/opt)|16.8 |16.8| 17.0| 13.4| 12.8|15.2|
+
 Table 1: CPEs and Ratios for Optimized vs. Naive Implementations
