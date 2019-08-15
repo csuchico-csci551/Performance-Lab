@@ -207,4 +207,29 @@ Speedup		1.0	1.0	1.0	1.0	1.0	1.0
 
 ### Caveats
 
-The baseline/grading is based on running the code on one of the OCNL244 lab machines with no other users running on it. 
+The baseline/grading is based on running the code on one of the OCNL244 lab machines with no other users running on it.
+
+## Coding Rules
+
+You may write any code you want, as long as it satisfies the following:
+* It must be in ANSI C. You may not use any embedded assembly language statements.
+* It must not interfere with the time measurement mechanism. You will also be penalized if your code prints any extraneous information.
+You can only modify code in kernels.c. You are allowed to define macros, additional global variables, and other procedures in these files.
+
+## Evaluation
+
+Your solutions for rotate and smooth will each count for 50% of your grade. The score for each will be based on the following:
+  * Correctness: You will get NO CREDIT for buggy code that causes the driver to complain! This includes code that correctly operates on the test sizes, but incorrectly on image matrices of other sizes. As mentioned earlier, you may assume that the image dimension is a multiple of 32.
+  * CPE:You will get full credit for your implementations of rotate and smooth if they are correct and achieve mean CPEs above thresholds 2.5 and 2.9 respectively. You will get partial credit for a correct implementation that does better than the supplied naive one.
+    * Extra Credit - If your code performs better than the mentioned thresholds you will receive 5 points for each implementation that performs better.
+
+## Turn In Instructions
+
+When you have completed the lab, you will hand in one file, *kernels.c*, that contains your solution. Here is how to hand in your solution:
+
+* Make sure you have included your identifying information in the team struct in *kernels.c*.
+* Make sure that the *rotate()* and *smooth()* functions correspond to your fastest implementations, as these are the only functions that will be tested when we use the driver to grade your assignment.
+* Remove any extraneous print statements.
+* Submit your *kernels.c* file to Tyson's Turnin System
+
+Good luck!
