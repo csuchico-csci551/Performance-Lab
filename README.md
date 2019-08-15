@@ -223,6 +223,10 @@ Your solutions for rotate and smooth will each count for 50% of your grade. The 
   * CPE:You will get full credit for your implementations of rotate and smooth if they are correct and achieve mean CPEs above thresholds 2.5 and 2.9 respectively. You will get partial credit for a correct implementation that does better than the supplied naive one.
     * Extra Credit - If your code performs better than the mentioned thresholds you will receive 5 points for each implementation that performs better.
 
+### Evaluation Caveat/System details
+
+Your system will have a significant impact on the performance. For grading I will be using OCNL244 machines with no other users, which is where the baseline comes from. This may make it difficult to get quick turn around times on grading. You can also do this during testing your code to see how well your code performs.
+
 ## Turn In Instructions
 
 When you have completed the lab, you will hand in one file, *kernels.c*, that contains your solution. Here is how to hand in your solution:
