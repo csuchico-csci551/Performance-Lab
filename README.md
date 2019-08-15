@@ -185,9 +185,9 @@ Member 1: Harry Q. Bovik
 Email 1: bovik@nowhere.edu
 Rotate: Version = naive_rotate: Naive baseline implementation:
 Dim		64	128	256	512	1024	Mean
-Your CPEs	2.1	3.1	4.5	7.8	14.3
-Baseline CPEs	3.1	3.2	4.4	7.7	14.4
-Speedup		1.5	1.0	1.0	1.0	1.0	1.1
+Your CPEs	2.1	3.3	4.4	7.8	14.4
+Baseline CPEs	2.1	3.4	4.4	7.7	14.4
+Speedup		1.0	1.0	1.0	1.0	1.0	1.0
 ```
 
 ### Optimizing Smooth (50%)
