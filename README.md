@@ -183,12 +183,11 @@ unix> ./driver
 Teamname: bovik
 Member 1: Harry Q. Bovik
 Email 1: bovik@nowhere.edu
-Rotate: Version
 Rotate: Version = naive_rotate: Naive baseline implementation:
 Dim		64	128	256	512	1024	Mean
-Your CPEs	3.1	3.2	4.4	7.7	14.4
-Baseline CPEs	14.7	40.1	46.4	65.9	94.5
-Speedup		4.7	12.6	10.5	8.6	6.6	8.1
+Your CPEs	2.1	3.1	4.5	7.8	14.3
+Baseline CPEs	3.1	3.2	4.4	7.7	14.4
+Speedup		1.5	1.0	1.0	1.0	1.0	1.1
 ```
 
 ### Optimizing Smooth (50%)
@@ -201,7 +200,11 @@ unix> ./driver
 
 Smooth: Version = naive_smooth: Naive baseline implementation:
 Dim		32	64	128	256	512	Mean
-Your CPEs	36.7	36.7	36.7	36.7	36.8
-Baseline CPEs	695.0	698.0	702.0	717.0	722.0
-Speedup		18.9	19.0	19.1	19.6	19.6	19.3
+Your CPEs	36.6	36.7	36.7	36.7	36.8
+Baseline CPEs	36.7	36.7	36.7	36.7	36.8
+Speedup		1.0	1.0	1.0	1.0	1.0	1.0
 ```
+
+### Caveats
+
+The baseline/grading is based on running the code on one of the OCNL244 lab machines with no other users running on it. 
