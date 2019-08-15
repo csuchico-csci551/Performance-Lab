@@ -112,3 +112,96 @@ The ratios (speedups) of the optimized implementation over the naive one will co
 |Speedup (naive/opt)|16.8 |16.8| 17.0| 13.4| 12.8|15.2|
 
 Table 1: CPEs and Ratios for Optimized vs. Naive Implementations
+
+### Assumptions
+
+To make life easier, you can assume that N is a multiple of 32. Your code must run correctly for all such values of N , but we will measure its performance only for the 5 values shown in Table 1.
+
+## Infrastructure
+
+We have provided support code to help you test the correctness of your implementations and measure their performance. This section describes how to use this infrastructure. The exact details of each part of the assignment is described in the following section.
+Note: The only source file you will be modifying is *kernels.c.*
+
+### Versioning
+
+You will be writing many versions of the rotate and smooth routines. To help you compare the performance of all the different versions you’ve written, we provide a way of “registering” functions.
+For example, the file *kernels.c* that we have provided you contains the following function:
+
+```C
+void register_rotate_functions() {
+  add_rotate_function(&rotate, rotate_descr);
+}
+```
+
+This function contains one or more calls to add rotate function. In the above example, add rotate function registers the function rotate along with a string rotate descr which is an ASCII description of what the function does. See the file *kernels.c* to see how to create the string descriptions. This string can be at most 256 characters long.
+
+A similar function for your smooth kernels is provided in the file *kernels.c.*
+
+### Driver
+
+The source code you will write will be linked with object code that we supply into a driver binary. To create this binary, you will need to execute the command
+
+```bash
+unix> make driver
+```
+
+You will need to re-make driver each time you change the code in kernels.c. To test your implementations, you can then run the command:
+
+```bash
+unix> ./driver
+```
+
+The driver can be run in four different modes:
+* Default mode, in which all versions of your implementation are run.
+* Autograder mode, in which only the rotate() and smooth() functions are run. This is the mode we will
+run in when we use the driver to grade your handin.
+* File mode, in which only versions that are mentioned in an input file are run.
+* Dump mode, in which a one-line description of each version is dumped to a text file. You can then edit this text file to keep only those versions that you’d like to test using the file mode. You can specify whether to quit after dumping the file or if your implementations are to be run.
+
+If run without any arguments, driver will run all of your versions (default mode). Other modes and options can be specified by command-line arguments to driver, as listed below:
+
+* -g : Run only rotate() and smooth() functions (autograder mode).
+* -f <funcfile> : Execute only those versions specified in <funcfile> (file mode).
+* -d <dumpfile> : Dump the names of all versions to a dump file called <dumpfile>, one line to a version (dump mode).
+* -q : Quit after dumping version names to a dump file. To be used in tandem with -d. For example, to quit immediately after printing the dump file, type ./driver -qd dumpfile.
+* -h : Print the command line usage.
+
+### Team information
+
+Important: Before you start, you should fill in the struct in *kernels.c* with information about your team (group name, your name and email address). The code will not compile until you've doen this.
+
+## Assignment details
+
+### Optimizing Rotate (50%)
+
+In this part, you will optimize rotate to achieve as low a CPE as possible. You should compile driver and then run it with the appropriate arguments to test your implementations.
+
+For example, running driver with the supplied naive version (for rotate) generates the output shown below:
+
+```bash
+unix> ./driver
+Teamname: bovik
+Member 1: Harry Q. Bovik
+Email 1: bovik@nowhere.edu
+Rotate: Version
+Rotate: Version = naive_rotate: Naive baseline implementation:
+Dim		64	128	256	512	1024	Mean
+Your CPEs	3.1	3.2	4.4	7.7	14.4
+Baseline CPEs	14.7	40.1	46.4	65.9	94.5
+Speedup		4.7	12.6	10.5	8.6	6.6	8.1
+```
+
+### Optimizing Smooth (50%)
+
+In this part, you will optimize smooth to achieve as low a CPE as possible.
+For example, running driver with the supplied naive version (for smooth) generates the output shown below:
+
+```bash
+unix> ./driver
+
+Smooth: Version = naive_smooth: Naive baseline implementation:
+Dim		32	64	128	256	512	Mean
+Your CPEs	36.7	36.7	36.7	36.7	36.8
+Baseline CPEs	695.0	698.0	702.0	717.0	722.0
+Speedup		18.9	19.0	19.1	19.6	19.6	19.3
+```
